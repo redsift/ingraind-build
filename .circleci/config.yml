@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     environment:
-      CONTAINER_NAME: "quay.io/redsift/ingraind"
+      CONTAINER_NAME: "quay.io/redsift/ingraind-build"
       KERNEL_VERSION: "4.16.12-1.el7.elrepo.x86_64"
 
     working_directory: /tmp/ws/build
