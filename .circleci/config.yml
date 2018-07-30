@@ -46,6 +46,9 @@ workflows:
               only:
                 - master
 
+    jobs:
+      - build
+
   build_pack:
     jobs:
       - build
