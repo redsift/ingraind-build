@@ -20,7 +20,7 @@ RUN apt-get update \
 
 RUN curl https://sh.rustup.rs -sSf > rustup.sh \
     && sh rustup.sh -y \
-          --default-toolchain nightly \
+          --default-toolchain stable \
           --no-modify-path \
     && rustup target add x86_64-unknown-linux-musl \
     && rustup --version \
