@@ -7,8 +7,8 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     KERNEL_SOURCE=/kernel/
 
 RUN apt-get update \
-    && apt-get -y install debhelper cmake libllvm6.0 llvm-6.0-dev libclang-6.0-dev \
-       libelf-dev bison flex libedit-dev clang-format-6.0 python python-netaddr \
+    && apt-get -y install debhelper cmake libllvm9.0 llvm-9.0-dev libclang-9.0-dev \
+       libelf-dev bison flex libedit-dev clang-format-9.0 python python-netaddr \
        python-pyroute2 luajit libluajit-5.1-dev arping iperf netperf ethtool \
        devscripts zlib1g-dev libfl-dev \
        pkg-config libssl-dev \
@@ -28,7 +28,7 @@ RUN curl https://sh.rustup.rs -sSf > rustup.sh \
     && cargo --version \
     && rustc --version
 
-RUN ln -s /usr/bin/llc-6.0 /usr/bin/llc 
+RUN ln -s /usr/bin/llc-9.0 /usr/bin/llc 
 
 RUN cargo install bindgen
 
