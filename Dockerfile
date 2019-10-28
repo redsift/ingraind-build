@@ -30,13 +30,6 @@ RUN curl https://sh.rustup.rs -sSf > rustup.sh \
 
 RUN ln -s /usr/bin/llc-6.0 /usr/bin/llc 
 
-WORKDIR /tmp
-RUN git clone https://github.com/iovisor/bcc.git \
-    && cd bcc; mkdir build; cd build \
-    && cmake -DCMAKE_INSTALL_PREFIX=/usr .. \
-    && make \
-    && make install
-
 RUN cargo install bindgen
 
 COPY ${kernel} /kernel
