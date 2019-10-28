@@ -7,8 +7,8 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     KERNEL_SOURCE=/kernel/
 
 RUN apt-get update \
-    && apt-get -y install debhelper cmake libllvm9.0 llvm-9.0-dev libclang-9.0-dev \
-       libelf-dev bison flex libedit-dev clang-format-9.0 python python-netaddr \
+    && apt-get -y install debhelper cmake libllvm9 llvm-9-dev libclang-9-dev \
+       libelf-dev bison flex libedit-dev clang-format-9 python python-netaddr \
        python-pyroute2 luajit libluajit-5.1-dev arping iperf netperf ethtool \
        devscripts zlib1g-dev libfl-dev \
        pkg-config libssl-dev \
