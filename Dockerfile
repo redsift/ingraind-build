@@ -28,7 +28,7 @@ RUN curl https://sh.rustup.rs -sSf > rustup.sh \
     && cargo --version \
     && rustc --version
 
-RUN ln -s /usr/bin/llc-9.0 /usr/bin/llc 
+RUN ln -s /usr/bin/llc-9 /usr/bin/llc 
 
 RUN cargo install bindgen
 
