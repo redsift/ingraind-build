@@ -17,7 +17,7 @@ RUN apt-get update \
        clang \
        musl musl-tools musl-dev \
        capnproto \
-       yum \
+       yum yum-utils \
     && apt-get clean -y
 
 RUN curl https://sh.rustup.rs -sSf > rustup.sh \
