@@ -1,0 +1,9 @@
+[amzn2-core]
+name=Amazon Linux 2 core repository
+mirrorlist=http://amazonlinux.default.amazonaws.com/2/core/latest/x86_64/mirror.list
+priority=10
+gpgcheck=0
+enabled=1
+metadata_expire=300
+mirrorlist_expire=300
+report_instanceid=yes

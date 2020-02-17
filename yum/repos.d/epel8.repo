@@ -1,0 +1,11 @@
+[elrepo8]
+name=ELRepo.org Community Enterprise Linux Kernel Repository - el8
+baseurl=http://elrepo.org/linux/kernel/el8/$basearch/
+        http://mirrors.coreix.net/elrepo/kernel/el8/$basearch/
+        http://mirror.rackspace.com/elrepo/kernel/el8/$basearch/
+        http://repos.lax-noc.com/elrepo/kernel/el8/$basearch/
+        http://mirror.ventraip.net.au/elrepo/kernel/el8/$basearch/
+mirrorlist=http://mirrors.elrepo.org/mirrors-elrepo-kernel.el8
+enabled=1
+gpgcheck=0
+protect=0

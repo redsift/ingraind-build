@@ -28,11 +28,10 @@ RUN curl https://sh.rustup.rs -sSf > rustup.sh \
     && rustup toolchain add nightly \
     && rustup --version \
     && cargo --version \
-    && rustc --version
-
-RUN ln -s /usr/bin/llc-9 /usr/bin/llc 
-
-RUN cargo install bindgen
+    && rustc --version \
+    && ln -s /usr/bin/llc-9 /usr/bin/llc \
+    && cargo install bindgen
 
 COPY ${kernel} /kernel
+COPY yum/ /etc/yum/
 WORKDIR /build
