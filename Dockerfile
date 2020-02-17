@@ -12,7 +12,7 @@ RUN apt-get update \
        python-pyroute2 luajit libluajit-5.1-dev arping iperf netperf ethtool \
        devscripts zlib1g-dev libfl-dev \
        pkg-config libssl-dev \
-       curl \
+       curl wget \
        git \
        clang \
        musl musl-tools musl-dev \
