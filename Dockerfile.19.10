@@ -33,7 +33,7 @@ RUN curl https://sh.rustup.rs -sSf > rustup.sh \
     && cargo --version \
     && rustc --version \
     && ln -s /usr/bin/llc-9 /usr/bin/llc \
-    && cargo install bindgen sccache
+    && cargo install bindgen sccache rsign2
 
 ENV RUSTC_WRAPPER=/usr/local/cargo/bin/sccache 
 COPY ${kernel} /kernel
