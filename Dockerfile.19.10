@@ -1,6 +1,7 @@
 FROM ubuntu:19.10
 
 ARG kernel=./kernel
+ARG openssl_arch=linux-x86_64
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH \
@@ -34,6 +35,25 @@ RUN curl https://sh.rustup.rs -sSf > rustup.sh \
     && rustc --version \
     && ln -s /usr/bin/llc-9 /usr/bin/llc \
     && cargo install bindgen sccache rsign2
+
+RUN echo "Building OpenSSL" \
+    && VERS=1.0.2p \
+    && CHECKSUM=50a98e07b1a89eb8f6a99477f262df71c6fa7bef77df4dc83025a2845c827d00 \
+    && curl -sqO https://www.openssl.org/source/openssl-$VERS.tar.gz \
+    && echo "$CHECKSUM openssl-$VERS.tar.gz" > checksums.txt \
+    && sha256sum -c checksums.txt \
+    && tar xzf openssl-$VERS.tar.gz && cd openssl-$VERS \
+    && CC=musl-gcc ./Configure ${openssl_arch} -fPIC --prefix=/usr/local/musl/$TARGET \
+    && make depend \
+    && make && make install \
+    && cd .. && rm -rf openssl-$VERS.tar.gz openssl-$VERS checksums.txt
+
+
+ENV OPENSSL_DIR=/usr/local/musl/$TARGET/ \
+    OPENSSL_INCLUDE_DIR=/usr/local/musl/$TARGET/include/ \
+    DEP_OPENSSL_INCLUDE=/usr/local/musl/$TARGET/include/ \
+    OPENSSL_LIB_DIR=/usr/local/musl/$TARGET/lib/ \
+    OPENSSL_STATIC=1
 
 ENV RUSTC_WRAPPER=/usr/local/cargo/bin/sccache 
 COPY ${kernel} /kernel
