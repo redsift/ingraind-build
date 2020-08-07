@@ -33,18 +33,9 @@ jobs:
                          -t $CONTAINER_NAME:$SHA-18.04 \
                          .
 
-            docker build --no-cache \
-                         -f Dockerfile.19.10 \
-                         --build-arg kernel=kernels/$KERNEL_VERSION \
-                         -t $CONTAINER_NAME:latest \
-                         -t $CONTAINER_NAME:19.10 \
-                         -t $CONTAINER_NAME:$SHA-19.10 \
-                         .
-
             echo "Total sizes"
             docker images $CONTAINER_NAME
             docker push $CONTAINER_NAME:18.04
-            docker push $CONTAINER_NAME:19.10
 
 workflows:
   version: 2
