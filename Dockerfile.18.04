@@ -10,8 +10,8 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     SCCACHE_BUCKET=ingrain-sccache
 
 RUN apt-get update \
-    && apt-get -y install debhelper cmake libllvm9 llvm-9-dev libclang-9-dev \
-       libelf-dev bison flex libedit-dev clang-format-9 python python-netaddr \
+    && apt-get -y install debhelper cmake libllvm10 llvm-10-dev libclang-10-dev \
+       libelf-dev bison flex libedit-dev clang-format-10 python python-netaddr \
        python-pyroute2 luajit libluajit-5.1-dev arping iperf netperf ethtool \
        devscripts zlib1g-dev libfl-dev \
        pkg-config libssl-dev \
@@ -33,7 +33,7 @@ RUN curl https://sh.rustup.rs -sSf > rustup.sh \
     && rustup --version \
     && cargo --version \
     && rustc --version \
-    && ln -s /usr/bin/llc-9 /usr/bin/llc \
+    && ln -s /usr/bin/llc-10 /usr/bin/llc \
     && cargo install bindgen sccache rsign2
 
 RUN echo "Building OpenSSL" \
