@@ -1,6 +1,6 @@
 [fedora]
-name=Fedora 31 - $basearch
-metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-31&arch=$basearch
+name=Fedora 32 - $basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-32&arch=$basearch
 enabled=1
 metadata_expire=7d
 repo_gpgcheck=0
