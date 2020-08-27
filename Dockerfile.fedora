@@ -19,6 +19,7 @@ RUN yum install -y clang-10.0.0 \
 	openssl-devel perl-podlators \
 	capnproto \
 	dnf-utils \
+	git \
 	make makedepend
 
 RUN curl https://sh.rustup.rs -sSf > rustup.sh \
