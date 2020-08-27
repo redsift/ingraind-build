@@ -7,7 +7,7 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
-    && apt-get -y install debhelper cmake libllvm10 llvm-10-dev libclang-10-dev \
+    && apt-get -y install debhelper cmake llvm libllvm10 llvm-10-dev libclang-10-dev \
        libelf-dev bison flex libedit-dev clang-format-10 python python-netaddr \
        luajit libluajit-5.1-dev arping iperf netperf ethtool \
        devscripts zlib1g-dev libfl-dev \
