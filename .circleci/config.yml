@@ -3,7 +3,6 @@ jobs:
   build:
     environment:
       CONTAINER_NAME: "quay.io/redsift/ingraind-build"
-      KERNEL_VERSION: "4.16.12-1.el7.elrepo.x86_64"
 
     working_directory: /tmp/ws/build
     docker:
@@ -28,14 +27,27 @@ jobs:
             export SHA=${CIRCLE_SHA1:0:7}
             docker build --no-cache \
                          -f Dockerfile.18.04 \
-                         --build-arg kernel=kernels/$KERNEL_VERSION \
                          -t $CONTAINER_NAME:18.04 \
                          -t $CONTAINER_NAME:$SHA-18.04 \
+                         .
+
+            docker build --no-cache \
+                         -f Dockerfile.20.04 \
+                         -t $CONTAINER_NAME:20.04 \
+                         -t $CONTAINER_NAME:$SHA-20.04 \
+                         .
+
+            docker build --no-cache \
+                         -f Dockerfile.fedora \
+                         -t $CONTAINER_NAME:fedora \
+                         -t $CONTAINER_NAME:$SHA-fedora \
                          .
 
             echo "Total sizes"
             docker images $CONTAINER_NAME
             docker push $CONTAINER_NAME:18.04
+            docker push $CONTAINER_NAME:20.04
+            docker push $CONTAINER_NAME:fedora
 
 workflows:
   version: 2

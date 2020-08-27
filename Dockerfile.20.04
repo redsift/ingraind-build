@@ -1,16 +1,15 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ARG openssl_arch=linux-x86_64
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH \
-    DEBIAN_FRONTEND=noninteractive \
-    SCCACHE_BUCKET=ingrain-sccache
+    DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
     && apt-get -y install debhelper cmake libllvm10 llvm-10-dev libclang-10-dev \
        libelf-dev bison flex libedit-dev clang-format-10 python python-netaddr \
-       python-pyroute2 luajit libluajit-5.1-dev arping iperf netperf ethtool \
+       luajit libluajit-5.1-dev arping iperf netperf ethtool \
        devscripts zlib1g-dev libfl-dev \
        pkg-config libssl-dev \
        curl wget \
@@ -54,6 +53,4 @@ ENV OPENSSL_DIR=/usr/local/musl/$TARGET/ \
     OPENSSL_LIB_DIR=/usr/local/musl/$TARGET/lib/ \
     OPENSSL_STATIC=1
 
-ENV RUSTC_WRAPPER=/usr/local/cargo/bin/sccache 
-COPY yum/ /etc/yum/
 WORKDIR /build

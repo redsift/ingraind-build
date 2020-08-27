@@ -1,25 +1,25 @@
-FROM ubuntu:18.04
+FROM fedora:32
 
 ARG openssl_arch=linux-x86_64
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH \
-    DEBIAN_FRONTEND=noninteractive \
-    SCCACHE_BUCKET=ingrain-sccache
+    DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update \
-    && apt-get -y install debhelper cmake libllvm10 llvm-10-dev libclang-10-dev \
-       libelf-dev bison flex libedit-dev clang-format-10 python python-netaddr \
-       python-pyroute2 luajit libluajit-5.1-dev arping iperf netperf ethtool \
-       devscripts zlib1g-dev libfl-dev \
-       pkg-config libssl-dev \
-       curl wget \
-       git \
-       clang \
-       musl musl-tools musl-dev \
-       capnproto \
-       linux-headers-generic \
-    && apt-get clean -y
+RUN yum install -y clang-10.0.0 \
+	llvm-10.0.0 \
+	llvm-libs-10.0.0 \
+	llvm-devel-10.0.0 \
+	llvm-static-10.0.0 \
+	kernel \
+	kernel-devel \
+	elfutils-libelf-devel \
+	ca-certificates \
+	musl-devel musl-clang musl-libc musl-libc-static musl-gcc \
+	openssl-devel perl-podlators \
+	capnproto \
+	dnf-utils \
+	make makedepend
 
 RUN curl https://sh.rustup.rs -sSf > rustup.sh \
     && sh rustup.sh -y \
@@ -32,7 +32,6 @@ RUN curl https://sh.rustup.rs -sSf > rustup.sh \
     && rustup --version \
     && cargo --version \
     && rustc --version \
-    && ln -s /usr/bin/llc-10 /usr/bin/llc \
     && cargo install bindgen rsign2
 
 RUN echo "Building OpenSSL" \
@@ -47,13 +46,11 @@ RUN echo "Building OpenSSL" \
     && make && make install \
     && cd .. && rm -rf openssl-$VERS.tar.gz openssl-$VERS checksums.txt
 
-
 ENV OPENSSL_DIR=/usr/local/musl/$TARGET/ \
     OPENSSL_INCLUDE_DIR=/usr/local/musl/$TARGET/include/ \
     DEP_OPENSSL_INCLUDE=/usr/local/musl/$TARGET/include/ \
     OPENSSL_LIB_DIR=/usr/local/musl/$TARGET/lib/ \
     OPENSSL_STATIC=1
 
-ENV RUSTC_WRAPPER=/usr/local/cargo/bin/sccache 
-COPY yum/ /etc/yum/
+COPY yum/repos.d/ /etc/yum.repos.d/
 WORKDIR /build

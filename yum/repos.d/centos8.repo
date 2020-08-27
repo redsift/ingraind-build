@@ -1,4 +1,4 @@
 [centos8]
 name=CentOS-8 - Base
 mirrorlist=http://mirrorlist.centos.org/?release=8&arch=$basearch&repo=BaseOS&infra=container
-enabled=1
+enabled=0
