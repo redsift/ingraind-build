@@ -4,7 +4,7 @@ ARG openssl_arch=linux-x86_64
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH \
-    DEBIAN_FRONTEND=noninteractive \
+    DEBIAN_FRONTEND=noninteractive 
 
 RUN apt-get update \
     && apt-get -y install debhelper cmake llvm libllvm10 llvm-10-dev libclang-10-dev \
@@ -31,7 +31,6 @@ RUN curl https://sh.rustup.rs -sSf > rustup.sh \
     && rustup --version \
     && cargo --version \
     && rustc --version \
-    && ln -s /usr/bin/llc-10 /usr/bin/llc \
     && cargo install bindgen rsign2
 
 RUN echo "Building OpenSSL" \

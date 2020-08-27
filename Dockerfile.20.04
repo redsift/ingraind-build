@@ -31,7 +31,6 @@ RUN curl https://sh.rustup.rs -sSf > rustup.sh \
     && rustup --version \
     && cargo --version \
     && rustc --version \
-    && ln -s /usr/bin/llc-10 /usr/bin/llc \
     && cargo install bindgen rsign2
 
 RUN echo "Building OpenSSL" \
