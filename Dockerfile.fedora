@@ -1,4 +1,4 @@
-FROM fedora:32
+FROM fedora:rawhide
 
 ARG openssl_arch=linux-x86_64
 ENV RUSTUP_HOME=/usr/local/rustup \
@@ -6,11 +6,11 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     PATH=/usr/local/cargo/bin:$PATH \
     DEBIAN_FRONTEND=noninteractive
 
-RUN yum install -y clang-10.0.0 \
-	llvm-10.0.0 \
-	llvm-libs-10.0.0 \
-	llvm-devel-10.0.0 \
-	llvm-static-10.0.0 \
+RUN yum install -y clang-11.0.0 \
+	llvm-11.0.0 \
+	llvm-libs-11.0.0 \
+	llvm-devel-11.0.0 \
+	llvm-static-11.0.0 \
 	kernel \
 	kernel-devel \
 	elfutils-libelf-devel \
