@@ -37,17 +37,10 @@ jobs:
                          -t $CONTAINER_NAME:$SHA-20.04 \
                          .
 
-            docker build --no-cache \
-                         -f Dockerfile.fedora \
-                         -t $CONTAINER_NAME:fedora \
-                         -t $CONTAINER_NAME:$SHA-fedora \
-                         .
-
             echo "Total sizes"
             docker images $CONTAINER_NAME
             docker push $CONTAINER_NAME:18.04
             docker push $CONTAINER_NAME:20.04
-            docker push $CONTAINER_NAME:fedora
 
 workflows:
   version: 2
